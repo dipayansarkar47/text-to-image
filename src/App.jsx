@@ -13,6 +13,7 @@ function App() {
   const [imageSrc, setImageSrc] = useState(null);
   const [input, setinput] = useState("Ram Mandir Temple");
   const [loading, setloading] = useState(false);
+  const [error, seterror] = useState(false);
 
   const query = async (data) => {
     try {
@@ -35,6 +36,7 @@ function App() {
       setImageSrc(imageUrl);
     } catch (error) {
       console.error("Error fetching data:", error);
+      seterror(true);
     }
   };
 
@@ -83,6 +85,11 @@ function App() {
                 </div>
               </div>
             </div>
+          )
+        }
+        {
+          error && (
+            <div className='mt-8 text-sm text-red-600'>Due to high demand, we are unable to serve you! Please try again later...</div>
           )
         }
         {imageSrc && (
